@@ -1,4 +1,4 @@
-©class User < ActiveRecord::Base
+class User < ActiveRecord::Base
 	belongs_to :user
 
 
