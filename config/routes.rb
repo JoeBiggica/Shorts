@@ -5,6 +5,7 @@ resources :users do
 end
 
 resources :pictures
+resources :shorts
 
 root 'pictures#new'
 
