@@ -13,4 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+// require_tree .
+//= require filedrop-min
+
+$(function(){
+	var zone = new FileDrop("picture");
+
+	zone.event('send', function (files) {
+  // FileList might contain multiple items.
+  		files.each(function (file) {
+    // Send the file:
+    		file.sendTo('upload.php')
+  })
+})
+})
+

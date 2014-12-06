@@ -1,0 +1,11 @@
+<div class="col-md-6 col-md-offset-3">
+
+
+	<%= bootstrap_form_tag url: '/pictures' do |f| %>
+	<%= f.text_field :image_url%>
+	<%= f.text_field :edited_image_url%>
+	<%= f.integer :user_id%>
+
+	<%= f.submit "Submit" %>
+	<% end %>
+</div>
