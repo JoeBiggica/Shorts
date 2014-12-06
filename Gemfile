@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'pry-rails'
+gem 'awesome_print'
 gem 'bootstrap_form'
 
 # Use ActiveModel has_secure_password
