@@ -23,8 +23,9 @@ $(function(){
   // FileList might contain multiple items.
   		files.each(function (file) {
     // Send the file:
+    		
     		file.sendTo('upload.php')
-  })
-})
+  		})
+	})
 })
 
