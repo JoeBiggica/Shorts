@@ -9,7 +9,9 @@ class ShortsController < ApplicationController
 	end
 
 	def new
+		@short = Short.new
 		
+		binding.pry
 	end
 
 end

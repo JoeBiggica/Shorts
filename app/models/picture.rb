@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class Picture < ActiveRecord::Base
 	belongs_to :user
 
 
