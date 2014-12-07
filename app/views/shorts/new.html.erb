@@ -3,14 +3,14 @@
 	
 	<form id="upload-photo-form" action="/shorts" method="POST">
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		<input type="text" name="name" value="New Short">
+		<input class="form-control" type="text" name="name" placeholder="Name your short!">
 		<div id="picture">
-			<p>Select Photo</p>
+	
 			<div id="uploaded-pictures">
 				
 			</div>
 		</div>
-		<button class="submit-button">Submit</button>
+		<button class="submit-button btn btn-default">Submit</button>
 	</form>
 
 </div>
@@ -58,4 +58,5 @@
 
   		})
 	})
+	$('input.fd-file').addClass('btn btn-default');
 </script>
