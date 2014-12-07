@@ -9,9 +9,7 @@ class ShortsController < ApplicationController
 	end
 
 	def new
-		@short = Short.new
-		
-		# binding.pry
+		@signature = Short.upload_photo_sig
 	end
 
 end
