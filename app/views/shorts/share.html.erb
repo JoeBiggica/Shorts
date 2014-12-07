@@ -1,4 +1,4 @@
-<div class="container">
+<div id="share-page" class="container">
   <div id="short-creation-message" class="row">
     <div class="col-md-12">
 
@@ -41,7 +41,8 @@
       console.log($('.phone-numbers')[i].value)
     }
     
-    $.post('send_short', {numbers: numbersArray, short_id: <%= @short.id %>})
+    $.post('/send_short', {numbers: numbersArray, short_id: <%= @short.id %>}).done(function(){
+      $('#share-page').html("<h1 style='text-align:center;'>sent!</h1> <span class='glyphicon glyphicon-ok'></span>");
 
   });
   
