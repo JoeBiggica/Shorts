@@ -24,11 +24,12 @@
     </a>
 		<ul class="short-picture-list"> 
 			<% @short.pictures.each do |pic| %>
-				<li class="col-md-3 short-picture">
+				<li class="col-md-3 short-picture text-center">
 					<%if(pic.edited_image_url)%>
-					<img src="/<%= pic.edited_image_url %>">
+					<a href="/<%= pic.edited_image_url %>"><img src="/<%= pic.edited_image_url %>"></a><br>
+					<a href="<%=pic.image_url%>">Original Image</a>
 					<%else%>
-					<img src="<%= pic.image_url %>">
+					<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>"></a>
 					<%end%>
 				</li>
 			<% end %>
@@ -68,7 +69,7 @@
 
 						success: function(response) {
 							
-							$('.short-picture-list').append('<li class="col-md-3 short-picture"><img src="'+ response.image_url + '"></li>');
+							$('.short-picture-list').append('<a href="'+response.image_url+'"><li class="col-md-3 short-picture"><img src="'+ response.image_url + '"></li></a>');
 							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">')
 						}
 					});
