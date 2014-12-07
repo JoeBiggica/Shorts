@@ -1,1 +1,13 @@
 <h1>TEST SHOW USER</h1>
+
+<img src="/default_profile.jpg" alt="">
+
+<h1>Name</h1>
+
+<%@shorts.each do |short|%>
+  <section class="album">
+    <h3><%= short.name %></h3>  
+    <img src="<%=short.pictures.first.image_url%>" alt="">
+  </section>
+<%end%>
+

@@ -10,4 +10,8 @@ class UsersController < ApplicationController
 		redirect_to '/'
 	end
 
+  def show
+    @shorts = Short.where(user_id: session[:id])
+  end
+
 end
