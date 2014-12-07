@@ -5,12 +5,11 @@
 		</div>
 
 		<div class="col-md-1 col-md-offset-1">
-			<form id="upload-photo-form" action="/shorts" method="POST">
-				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-				<div id="add-more-pictures">
-				</div>
-				<button class="submit-button btn btn-default">Submit</button>
-			</form>
+			
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			<div id="add-picture">
+			</div>
+			
 		</div>
 
 		<div class="col-md-1">
@@ -23,7 +22,7 @@
 		<a href="/short/share/<%=@short.id%>">
       <span class='glyphicon glyphicon-share'></span>
     </a>
-		<ul> 
+		<ul class="short-picture-list"> 
 			<% @short.pictures.each do |pic| %>
 				<li class="col-md-3 short-picture">
 					<img src="<%= pic.image_url %>">
@@ -35,7 +34,7 @@
 </div>
 
 <script>
-	var zone = new FileDrop("add-more-picture");
+	var zone = new FileDrop("add-picture");
 
 	zone.event('send', function (files) {
   // FileList might contain multiple items.
@@ -43,7 +42,7 @@
     		
     		var fd = new FormData();
     		var userId = <%= session[:id] %>;
-    		var signature = "<%=  @signature %>";
+    		var signature = "<%= @signature %>";
     		var generatedFileName = userId + '_' + $.now();
 
 			fd.append('type', 'image');
@@ -61,11 +60,11 @@
 					$.ajax({
 						url: '/pictures',
 						type: 'POST',
-						data: {'original_filename': response.data.name},
+						data: {'original_filename': response.data.name, short_id: <%= @short.id %>, add: true},
 
 						success: function(response) {
 							
-							$('#uploaded-pictures').append('<img src="'+ response.image_url + '"  style="height: 200px;">');
+							$('.short-picture-list').append('<li class="col-md-3 short-picture"><img src="'+ response.image_url + '"></li>');
 							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">')
 						}
 					});

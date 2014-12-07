@@ -26,6 +26,7 @@ class ShortsController < ApplicationController
 
 	def show
 		@short = Short.find_by(permalink: params["id"])
+		@signature = Short.photo_sig('POST')
 	end
 
 	def send_short
