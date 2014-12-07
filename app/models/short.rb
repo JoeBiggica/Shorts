@@ -34,14 +34,16 @@ class Short < ActiveRecord::Base
 			image_list = Magick::ImageList.new
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
-				image.resize_to_fit!(200,200)
+				image.resize_to_fit!(200)
 
 				image_list.push(image);
 			end
 			r_images.push(image_list.append(false));
 		end
 		url = "#{SecureRandom.uuid}.jpg"
+
 		r_images.append(true).write("./public/#{url}")
+
 		self.collage = url
 		self.save
 		self.collage

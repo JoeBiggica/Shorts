@@ -34,8 +34,6 @@ class ShortsController < ApplicationController
 			short.send_message(number)
 		end
 		render json: short
-
-
 	end
 
 
