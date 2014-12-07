@@ -1,5 +1,6 @@
 class Short < ActiveRecord::Base
 	belongs_to :user
+	has_many :pictures
 
 	def self.photo_sig(method, filename: nil)
 
