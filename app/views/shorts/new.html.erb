@@ -7,9 +7,13 @@
 		<input type="hidden" name="picture_ids[]">
 		<div id="picture">
 			<p>Select Photo</p>
+			<div id="uploaded-pictures">
+				
+			</div>
 		</div>
 		<button>Submit</button>
 	</form>
+
 </div>
 
 <script>
@@ -22,32 +26,35 @@
     		var fd = new FormData();
     		var userId = <%= session[:id] %>;
     		var signature = "<%=  @signature %>";
-    		
+    		var generatedFileName = userId + '_' + $.now();
+
 			fd.append('type', 'image');
-			fd.append('name', userId + '_' + $.now());
+			fd.append('name', generatedFileName);
 			fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
-			debugger;
+
 			$.ajax({
 				url: 'http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=' + signature,
 				type: 'POST',
 				data: fd,
 				contentType: false,
 				processData: false,
-				xhr: function() {
-					var x = $.ajaxSettings.xhr();
-					if (x.upload) {
-						x.upload.addEventListener('progress', function(e) {
-							if (e.lengthComputable) {
-								var pct = Math.round(parseInt(e.loaded, 10) /
-									parseInt(e.total, 10) * 100);
-								console.log(pct + '%');
-							}
-						}, false);
-					}
-					return x;
-				},
-				success: function() { console.log('complete'); }
+				
+				success: function(response) { 
+					$.ajax({
+						url: '/pictures',
+						type: 'POST',
+						data: {'original_filename': response.data.name},
+
+						success: function(response) {
+							debugger
+							$('#uploaded-pictures').append();
+						}
+					});
+
+					console.log('complete'); 
+				}
 			});
+
 
   		})
 	})
