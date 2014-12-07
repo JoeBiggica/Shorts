@@ -11,5 +11,11 @@ class SessionController < ApplicationController
 
 	end
 
+  def logout
+    session.destroy()
+
+    redirect_to '/login'
+  end
+
 
 end

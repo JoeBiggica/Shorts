@@ -28,6 +28,11 @@ span {
 }
 /*general*/
 
+#logout-button {
+	float: right;
+	margin-top: 2%;
+}
+
 .clicked {
 	color: indianred;
 }

@@ -3,6 +3,9 @@
     <a href="/">
       <img id="logo" src="/logo.png" alt="">
       <img src="/title-test.png" alt="">
+      <%if session[:id]%>
+        <a href="/logout"><button id="logout-button" class="btn btn-default">Log out</button></a>
+      <%end%>
     </a>
   </div>
 </nav>
