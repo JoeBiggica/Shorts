@@ -89,12 +89,15 @@ body {
 	height: 5em;
 }
 .invisible-block.bottom {
-	height: 15em;
+	height: 8em;
 }
 
 
 
 
+.submit-button {
+	margin-bottom: 8em;
+}
 
 
 

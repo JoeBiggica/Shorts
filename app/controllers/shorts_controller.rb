@@ -25,7 +25,7 @@ class ShortsController < ApplicationController
 	end
 
 	def show
-		binding.pry
+
 		@short = Short.find_by(permalink: params["id"])
 	end
 

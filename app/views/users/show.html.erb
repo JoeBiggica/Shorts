@@ -6,7 +6,7 @@
 
 <%@shorts.each do |short|%>
   <section class="album">
-    <h3><%= short.name %></h3>  
+    <a href="/shorts/<%=short.permalink%>"><h3><%= short.name %></h3><a>
      <img src="/<%=short.collage%>" alt="">
   </section>
 <%end%>

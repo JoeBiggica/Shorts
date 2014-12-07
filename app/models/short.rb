@@ -34,6 +34,9 @@ class Short < ActiveRecord::Base
 			image_list = Magick::ImageList.new
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
+				image.scale!(0.25)
+				image.crop!(0,0,500,500)
+
 				image_list.push(image);
 			end
 			r_images.push(image_list.append(false));
@@ -45,7 +48,7 @@ class Short < ActiveRecord::Base
 		self.collage
 	end
 
-	def send_message(phone_number,url)
+	def send_message(phone_number)
 
 		account_sid = 'ACad9e9341b5926f0c3a1954df501f0018'
 		auth_token = 'b31d874d9f364a6c7a3d9b300b227cab'
@@ -54,7 +57,7 @@ class Short < ActiveRecord::Base
 			:from => '+15162104262', 
 			:to => phone_number, 
 			:body => 'Hey Check out My New Short!',
-			:media_url => "http://148c934f.ngrok.com/#{url}"
+			:media_url => "http://148c934f.ngrok.com/#{self.collage}"
 			})
 	end
 
