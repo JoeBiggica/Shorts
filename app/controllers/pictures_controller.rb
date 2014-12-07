@@ -23,20 +23,19 @@ class PicturesController < ApplicationController
 	end
 
 	def update
-		image_from_web  = open(params[:url])
+		res  = HTTParty.get(params[:url])
 
 
-		image_name = params["picture_id"] + "_edited"
-		signature = Short.photo_sig('POST')
+		image_name = params["picture_id"] + "_edited.jpg"
+		# signature = Short.photo_sig('POST')
+		# request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {file: image_from_web, type: 'image', name: 'image_name'})
+		# hmac_signature = Short.photo_sig('GET', filename: image_name)
+		# image_url = "http://cdn.astra.io/v0/public/diogeneshamilton/shorts/#{image_name}?hmac=#{hmac_signature}"
 
-		request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {file: image_from_web, type: 'image', name: 'image_name'})
-		
+		File.open("./public/#{image_name}", 'wb') {|f| f.write(res) }  
 
-		hmac_signature = Short.photo_sig('GET', filename: image_name)
-		image_url = "http://cdn.astra.io/v0/public/diogeneshamilton/shorts/#{image_name}?hmac=#{hmac_signature}"
-		binding.pry
 		@picture = Picture.find(params["picture_id"])
-		@picture.edited_image_url = image_url
+		@picture.edited_image_url = image_name
 		@picture.save
 		render json: @picture 
 	end
