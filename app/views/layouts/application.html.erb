@@ -13,9 +13,13 @@
 <body>
 	<div id="shorts-main" class="container">
     <%= render 'layouts/top_title' %>
-		<%= yield %>
+		
+      <%= yield %>
+    
+    <%if session[:id]%>
+      <%= render 'layouts/bottom_menu' %>
+    <%end%>
 
-    <%= render 'layouts/bottom_menu' %>
 	</div>
 
 
