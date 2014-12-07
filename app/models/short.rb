@@ -34,8 +34,7 @@ class Short < ActiveRecord::Base
 			image_list = Magick::ImageList.new
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
-				image.scale!(0.25)
-				image.crop!(0,0,500,500)
+				image.resize_to_fit!(200,200)
 
 				image_list.push(image);
 			end

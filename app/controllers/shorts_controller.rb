@@ -29,9 +29,13 @@ class ShortsController < ApplicationController
 	end
 
 	def send_short
-		
+		short = Short.find(params[:short_id])
+		params[:numbers].each do |number|
+			short.send_message(number)
+		end
+		render json: short
 
-		
+
 	end
 
 
