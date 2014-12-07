@@ -11,7 +11,7 @@ class ShortsController < ApplicationController
 	def new
 		@short = Short.new
 		
-		binding.pry
+		# binding.pry
 	end
 
 end
