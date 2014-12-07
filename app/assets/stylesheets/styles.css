@@ -88,7 +88,9 @@ body {
 .invisible-block {
 	height: 5em;
 }
-
+.invisible-block.bottom {
+	height: 15em;
+}
 
 
 
