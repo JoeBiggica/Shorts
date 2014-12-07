@@ -15,6 +15,8 @@ post '/login', to: 'session#index'
 get '/upload_test', to: 'pictures#upload_test' #test for upload, modify later
 get '/shorts_test', to: 'shorts#shorts_test'
 
+get '/shorts/:short_id' => 'shorts#show'
+
 end
 
 
