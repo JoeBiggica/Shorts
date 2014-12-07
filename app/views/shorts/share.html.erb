@@ -42,9 +42,11 @@
       console.log($('.phone-numbers')[i].value)
     }
     
-    $.post('/send_short', {numbers: numbersArray, short_id: <%= @short.id %>}).done(function(){
+    $.post('send_short', {numbers: numbersArray, short_id: <%= @short.id %>}).done(function(){
       $('#share-page').html("<h1 style='text-align:center;'>sent!</h1> <span class='glyphicon glyphicon-ok'></span>");
     });
+
+  });
   
   
 </script>
