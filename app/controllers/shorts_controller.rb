@@ -8,15 +8,16 @@ class ShortsController < ApplicationController
 		picture_ids = params["picture_ids"]
 		name = params["name"]
 
-		short = Short.create({name: name, permalink: SecureRandom.uuid, user_id: session[:id]})
+		@short = Short.create({name: name, permalink: SecureRandom.uuid, user_id: session[:id]})
 
 		picture_ids.each do |picture_id|
 			pic = Picture.find(picture_id)
-			pic.short_id = short.id
+			pic.short_id = @short.id
 			pic.save
 		end
 
-		short.create_collage()
+		@short.create_collage()
+
 	end
 
 	def new
