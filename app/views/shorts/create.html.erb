@@ -42,6 +42,10 @@
 		
 		$.post('send_short', {numbers: numbersArray, short_id: <%= @short.id %>}).done(function(){
 			$('#share-page').html("<h1 style='text-align:center;'>invites sent</h1> <span class='glyphicon glyphicon-ok'></span>");
+			setTimeout(function(){
+		        location.href = "/shorts/<%=@short.permalink%>"
+		        console.log(location.href)
+		      },2000)
 		});
 
 	});
