@@ -1,7 +1,9 @@
 
 <section id="user-profile" class="text-center">
   <h1><%=@user.email%></h1>
-  <img id="user-profile-image" src="/default_profile.jpg" alt="">
+  <div class="pic-drop">
+  	<img id="user-profile-image" src="/default_profile.jpg" alt="">
+  </div>
 
   <%@shorts.each do |short|%>
     <section class="album">
@@ -15,4 +17,48 @@
 
 <script>
   $('.glyphicon-user').addClass('clicked');
+
+ //  $('#user-profile-image').on('click', function(){
+ //  	var zone = new FileDrop(".pic-drop");
+
+	// zone.event('send', function (files) {
+ //  // FileList might contain multiple items.
+ //  		files.each(function (file) {
+    		
+ //    		var fd = new FormData();
+ //    		var userId = <%= session[:id] %>;
+ //    		var signature = "<%= @signature %>";
+ //    		var generatedFileName = userId + '_' + $.now();
+
+	// 		fd.append('type', 'image');
+	// 		fd.append('name', generatedFileName);
+	// 		fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
+
+	// 		$.ajax({
+	// 			url: 'http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=' + signature,
+	// 			type: 'POST',
+	// 			data: fd,
+	// 			contentType: false,
+	// 			processData: false,
+				
+	// 			success: function(response) { 
+	// 				$.ajax({
+	// 					url: '/users/'+ <%= session[:id] %>,
+	// 					type: 'PUT',
+	// 					data: {'original_filename': response.data.name},
+
+	// 					success: function(response) {
+	// 						debugger
+	// 						$('.short-picture-list').append('<a href="'+response.image_url+'"><li class="col-md-3 short-picture"><img src="'+ response.image_url + '"></li></a>');
+	// 					}
+	// 				});
+
+	// 				console.log('complete'); 
+	// 			}
+	// 		});
+
+
+ //  		})
+	// })
+ //  })
 </script>

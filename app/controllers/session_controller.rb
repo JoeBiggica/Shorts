@@ -17,5 +17,9 @@ class SessionController < ApplicationController
     redirect_to '/login'
   end
 
+  def wrong_password()
+  	redirect_to '/login'
+  end
+
 
 end
