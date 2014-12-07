@@ -57,7 +57,7 @@ class Short < ActiveRecord::Base
 		@client.account.messages.create({
 			:from => '+15162104262', 
 			:to => phone_number, 
-			:body => 'Hey Check out My New Short!',
+			:body => "Hey Check out My New Short!",
 			:media_url => "http://148c934f.ngrok.com/#{self.collage}"
 			})
 	end
