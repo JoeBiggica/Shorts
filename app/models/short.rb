@@ -57,8 +57,8 @@ class Short < ActiveRecord::Base
 		@client.account.messages.create({
 			:from => '+15162104262', 
 			:to => phone_number, 
-			:body => "Hey Check out My New Short at http://1317fb7b.ngrok.com/shorts/#{self.permalink}!",
-			:media_url => "http://1317fb7b.ngrok.com/#{self.collage}"
+			:body => "Hey Check out My New Short at http://shortshack.herokuapp.com/shorts/#{self.permalink}!",
+			:media_url => "http://shortshack.herokuapp.com/#{self.collage}"
 			})
 	end
 
