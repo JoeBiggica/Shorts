@@ -15,4 +15,8 @@ class UsersController < ApplicationController
     @shorts = Short.where(user_id: session[:id])
   end
 
+  def home
+    @shorts = Short.where(user_id: session[:id])
+  end
+
 end
