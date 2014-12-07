@@ -26,7 +26,7 @@ span {
 
 body {
 	background-image: url('/cover-abstract-50.jpg');
-	height: 100%; /* gotta fix this  !!!!!!!!!!!!!! */=
+	height: 100%; /* gotta fix this  !!!!!!!!!!!!!! */
 }
 
 input {
@@ -101,10 +101,12 @@ button {
 
 .album img {
 	width: 90%;
-
-
+	margin: 1em 0 1em 0;
 }
 
+.album ul {
+	list-style: none;
+}
 
 /* main */
 .invisible-block {
@@ -138,7 +140,11 @@ button {
 
 
 
+/* profile image */
 
+#user-profile-image {
+	border-radius: 50%;
+}
 
 
 

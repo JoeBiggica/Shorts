@@ -1,11 +1,14 @@
 
-<h1><%=@user.email%></h1>
-<img src="/default_profile.jpg" alt="">
+<section id="user-profile" class="text-center">
+  <h1><%=@user.email%></h1>
+  <img id="user-profile-image" src="/default_profile.jpg" alt="">
 
-<%@shorts.each do |short|%>
-  <section class="album">
-    <a href="/shorts/<%=short.permalink%>"><h3><%= short.name %></h3><a>
-     <img src="/<%=short.collage%>" alt="">
-  </section>
-<%end%>
+  <%@shorts.each do |short|%>
+    <section class="album">
+      <a href="/shorts/<%=short.permalink%>"><h3><%= short.name %></h3><a>
+       <img src="/<%=short.collage%>" alt="">
+    </section>
+  <%end%>
 
+  
+</section>
