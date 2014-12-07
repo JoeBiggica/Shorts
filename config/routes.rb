@@ -15,7 +15,10 @@ post '/login', to: 'session#index'
 get '/upload_test', to: 'pictures#upload_test' #test for upload, modify later
 get '/shorts_test', to: 'shorts#shorts_test'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 19cfcc6a41aee902b1fb4de7cf1bce59ba41c5a5
 
 end
 
