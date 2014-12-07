@@ -4,10 +4,21 @@ span {
 	font-size: 3em;
 	color: indigo;
 }
+#menu-bottom ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
 
 #menu-bottom ul li {
 	display: inline;
-	margin: 0 1.1em 0 1.1em;
+	padding: .75em 0 .75em 0;
 }
 
 
+/* signup page */
+#signup-page {
+	background-image: url('/test-cover.jpg');
+	height: 1500px; /* gotta fix this  !!!!!!!!!!!!!! */
+}
