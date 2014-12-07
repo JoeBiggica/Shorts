@@ -4,14 +4,6 @@
 			<h1><%= @short.name %></h1>
 		</div>
 
-		<div class="col-md-1 col-md-offset-1">
-			
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-			<div id="add-picture">
-			</div>
-			
-		</div>
-
 		<div class="col-md-1">
 			
 		</div>
@@ -35,6 +27,12 @@
 			<% end %>
 		</ul>
 	</div>
+
+<label class="clear-both display-block"> Add photos <label>
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+<div id="add-picture">
+</div>
+
 
 </div>
 
