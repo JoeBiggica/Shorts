@@ -27,7 +27,6 @@ class PicturesController < ApplicationController
 	def update
 		res  = HTTParty.get(params[:url])
 
-
 		image_name = params["picture_id"] + "_edited.jpg"
 		# signature = Short.photo_sig('POST')
 		# request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {file: image_from_web, type: 'image', name: 'image_name'})

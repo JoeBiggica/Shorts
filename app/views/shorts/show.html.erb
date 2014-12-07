@@ -4,6 +4,7 @@
 			<h1><%= @short.name %></h1>
 		</div>
 
+		</div>
 		<div class="col-md-1">
 			
 		</div>
@@ -28,11 +29,19 @@
 		</ul>
 	</div>
 
-<label class="clear-both display-block"> Add photos <label>
+<label class="clear-both display-block"> Add photos </label>
 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 <div id="add-picture">
 </div>
 
+<div class="delete-button"> 			
+<form action="/shorts/<%=@short.id%>" method="POST">
+				<input type="hidden" name="user_id" value="<%=session[:id]%>">
+				<input type="hidden" name="_method" value="DELETE">
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+				<button class="btn btn-default">Delete</button>
+			</form>
+</div>
 
 </div>
 
