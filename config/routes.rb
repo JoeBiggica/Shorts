@@ -22,6 +22,7 @@ post '/send_short' => 'shorts#send_short'
 
 get '/logout', to: 'session#logout' 
 
+
 end
 
 

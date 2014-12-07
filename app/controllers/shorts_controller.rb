@@ -41,5 +41,12 @@ class ShortsController < ApplicationController
 		@short = Short.find(params[:id])
 	end
 
+	def destroy
+		short = Short.find(params[:id])
+		short.destroy
+
+		redirect_to '/users/' + params[:user_id]
+	end
+
 
 end
