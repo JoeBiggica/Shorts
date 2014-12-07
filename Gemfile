@@ -34,6 +34,7 @@ gem 'bootstrap_form'
 gem 'bcrypt', '~> 3.1.7'
 gem 'twilio-ruby'
 gem 'rmagick'
+gem 'httparty'
 
 # Use unicorn as the app server
 # gem 'unicorn'

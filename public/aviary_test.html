@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+</head>
+<body>
+
+</body>
+
+		<!-- Load widget code -->
+		
+
+
+		<!-- Instantiate the widget -->
+		<script type="text/javascript">
+
+		    var featherEditor = new Aviary.Feather({
+		        apiKey: '98c31e39a24b8caf',
+		        apiVersion: 3,
+		        tools: [,'text','stickers','draw','effects'],
+		        onSave: function(imageID, newURL) {
+		            var img = document.getElementById(imageID);
+		            img.src = newURL;
+		        },
+		        postUrl: '/pictures'
+		    });
+
+		    function launchEditor(id, src) {
+		        featherEditor.launch({
+		            image: id,
+		            url: src
+		        });
+		        return false;
+		    }
+
+		</script>                         
+
+		<!-- Add an edit button, passing the HTML id of the image
+		    and the public URL to the image -->
+		<a href="#" onclick="return launchEditor('editableimage1', 
+		    'http://cdn.astra.io/v0/public/diogeneshamilton/shorts/1_1417943906740?hmac=xrBlqoIBR0oaf_WOUvUQA4qQKZw');">Edit!</a>
+
+		<!-- original line of HTML here: -->
+		<img id="editableimage1" src="http://cdn.astra.io/v0/public/diogeneshamilton/shorts/1_1417943906740?hmac=xrBlqoIBR0oaf_WOUvUQA4qQKZw"/>
+
+</html>
