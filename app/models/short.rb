@@ -40,7 +40,9 @@ class Short < ActiveRecord::Base
 		end
 		url = "#{SecureRandom.uuid}.jpg"
 		r_images.append(true).write("./public/#{url}")
-		return url
+		self.collage = url
+		self.save
+		self.collage
 	end
 
 	def send_message(phone_number,url)

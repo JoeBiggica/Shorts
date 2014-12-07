@@ -16,7 +16,7 @@ class ShortsController < ApplicationController
 			pic.save
 		end
 
-
+		short.create_collage()
 	end
 
 	def new
