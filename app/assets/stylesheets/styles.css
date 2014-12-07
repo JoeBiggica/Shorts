@@ -21,7 +21,10 @@ span {
 	padding: .75em 0 .75em 0;
 }
 
-
+#logo {
+	height: 4.5em;
+	margin: 0.5em;
+}
 /*general*/
 
 .clicked {
