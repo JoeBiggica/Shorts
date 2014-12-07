@@ -4,15 +4,16 @@
 			<h1><%= @short.name %></h1>
 		</div>
 
-<<<<<<< HEAD
+
 		<div class="col-md-1 col-md-offset-1">
-			
-			<form action="/shorts/<%=@short.id%>" method="POST">
-				<input type="hidden" name="user_id" value="<%=session[:id]%>">
-				<input type="hidden" name="_method" value="DELETE">
-				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-				<button class="btn btn-default">Delete</button>
-			</form>
+			<%if @short.user_id == session[:id]%>
+				<form action="/shorts/<%=@short.id%>" method="POST">
+					<input type="hidden" name="user_id" value="<%=session[:id]%>">
+					<input type="hidden" name="_method" value="DELETE">
+					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+					<button class="btn btn-default">Delete</button>
+				</form>
+			<%end%>
 
 
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
@@ -23,8 +24,7 @@
 
 		</div>
 
-=======
->>>>>>> ebbcffa5365625161662a8584aa644bbd6cee7a5
+
 		<div class="col-md-1">
 			
 		</div>
