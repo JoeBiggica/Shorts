@@ -4,6 +4,7 @@
 			<h1><%= @short.name %></h1>
 		</div>
 
+<<<<<<< HEAD
 		<div class="col-md-1 col-md-offset-1">
 			
 			<form action="/shorts/<%=@short.id%>" method="POST">
@@ -22,6 +23,8 @@
 
 		</div>
 
+=======
+>>>>>>> ebbcffa5365625161662a8584aa644bbd6cee7a5
 		<div class="col-md-1">
 			
 		</div>
@@ -45,6 +48,12 @@
 			<% end %>
 		</ul>
 	</div>
+
+<label class="clear-both display-block"> Add photos <label>
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+<div id="add-picture">
+</div>
+
 
 </div>
 

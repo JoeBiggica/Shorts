@@ -1,3 +1,4 @@
+
 /* #menu-bottom */
 
 span {
@@ -38,7 +39,6 @@ span {
 
 body {
 	background-image: url('/cover-abstract-50.jpg');
-	height: 100%; /* gotta fix this  !!!!!!!!!!!!!! */
 	color: darkred !important;
 	font-family: avenir !important;
 }
@@ -90,7 +90,7 @@ button {
 	margin-top: 20px;
 }
 
-.col-md-6 {
+.create-short {
 	margin-bottom: 80px;
 }
 
@@ -133,8 +133,10 @@ button {
 
 .album {
 	background-color: rgba(240, 128, 128, 0.5);
-	border-radius: 1em;
+	border-radius: 0.2em;
 	text-align: center;
+	margin-top: 10px;
+	
 }
 
 .album img {
@@ -144,6 +146,11 @@ button {
 
 .album ul {
 	list-style: none;
+}
+
+#shorts-main section.album {
+	padding-top: 10px;
+	padding-bottom: 20px;
 }
 
 /* main */
@@ -187,6 +194,13 @@ button {
 	border-radius: 50%;
 }
 
+.clear-both {
+	clear:both;
+}
+
+.display-block {
+	display:block;
+}
 
 
 
