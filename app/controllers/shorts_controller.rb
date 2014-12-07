@@ -24,7 +24,6 @@ class ShortsController < ApplicationController
 	end
 
 	def show
-
 		@short = Short.find_by(permalink: params["id"])
 	end
 

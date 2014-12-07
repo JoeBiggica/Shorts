@@ -83,6 +83,12 @@ body {
 	text-align: center;
 }
 
+.album img {
+	width: 90%;
+	
+
+}
+
 
 /* main */
 .invisible-block {

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 	end
 
   def show
+    @user = User.find( session[:id] )
     @shorts = Short.where(user_id: session[:id])
   end
 
