@@ -24,8 +24,8 @@ class ShortsController < ApplicationController
 	end
 
 	def show
-
+		@short = Short.where(permalink: params["permalink"])
 	end
-	
+
 
 end
