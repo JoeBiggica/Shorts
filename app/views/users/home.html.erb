@@ -1,0 +1,12 @@
+<h3>
+  Private albums, inside jokes, with those who matter.
+  <br/><br/>
+  Share your shorts
+</h3>
+
+<%@shorts.each do |short|%>
+  <section class="album">
+    <a href="/shorts/<%=short.permalink%>"><h3><%= short.name %></h3><a>
+     <img src="/<%=short.collage%>" alt="">
+  </section>
+<%end%>

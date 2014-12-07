@@ -32,7 +32,7 @@ body {
 
 
 
-/* upload page */
+/* upload page ---- OLD*/ 
 #upload-reel img {
 	text-align: center;
 	height: 11em;
@@ -42,6 +42,16 @@ body {
 	opacity: 0.5;
 	cursor: pointer;
 }
+
+/* upload page -- NEW */
+.form-control {
+	height: 2em !important;
+	font-size: 3em !important;
+	text-align: center;
+}
+
+
+
 
 /* check menu */
 #check-menu {
@@ -79,13 +89,13 @@ body {
 
 .album {
 	background-color: rgba(240, 128, 128, 0.5);
-	border-radius: 5em;
+	border-radius: 1em;
 	text-align: center;
 }
 
 .album img {
 	width: 90%;
-	
+
 
 }
 

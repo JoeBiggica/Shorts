@@ -7,7 +7,7 @@ end
 resources :pictures
 resources :shorts
 
-root 'pictures#new'
+root 'users#home'
 
 get '/login', to: 'users#index'
 post '/login', to: 'session#index'
