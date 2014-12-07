@@ -1,4 +1,4 @@
-<div class="container">
+<div id="share-page" class="container">
 	<div id="short-creation-message" class="row">
 		<div class="col-md-12">
 
@@ -43,7 +43,7 @@
 		}
 		
 		$.post('send_short', {numbers: numbersArray, short_id: <%= @short.id %>}).done(function(){
-			$('.container').html("<h1>sent!</h1>");
+			$('#share-page').html("<h1>sent!</h1>");
 		});
 
 	});
