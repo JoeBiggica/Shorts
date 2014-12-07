@@ -4,6 +4,19 @@
 			<%= @short.name %>
 		</div>
 
+		<div class="col-md-1 col-md-offset-1">
+			<form id="upload-photo-form" action="/shorts" method="POST">
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+				<div id="add-more-pictures">
+				</div>
+				<button class="submit-button btn btn-default">Submit</button>
+			</form>
+		</div>
+
+		<div class="col-md-1">
+			
+		</div>
+
 	</div>
 
 	<div>
@@ -18,3 +31,49 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	var zone = new FileDrop("add-more-picture");
+
+	zone.event('send', function (files) {
+  // FileList might contain multiple items.
+  		files.each(function (file) {
+    		
+    		var fd = new FormData();
+    		var userId = <%= session[:id] %>;
+    		var signature = "<%=  @signature %>";
+    		var generatedFileName = userId + '_' + $.now();
+
+			fd.append('type', 'image');
+			fd.append('name', generatedFileName);
+			fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
+
+			$.ajax({
+				url: 'http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=' + signature,
+				type: 'POST',
+				data: fd,
+				contentType: false,
+				processData: false,
+				
+				success: function(response) { 
+					$.ajax({
+						url: '/pictures',
+						type: 'POST',
+						data: {'original_filename': response.data.name},
+
+						success: function(response) {
+							
+							$('#uploaded-pictures').append('<img src="'+ response.image_url + '"  style="height: 200px;">');
+							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">')
+						}
+					});
+
+					console.log('complete'); 
+				}
+			});
+
+
+  		})
+	})
+	$('input.fd-file').addClass('btn btn-default');
+</script>
