@@ -2,8 +2,8 @@
 	<div class="col-md-6">
 
 		<%= bootstrap_form_tag url: '/login' do |f| %>
-		<%= f.text_field :email%>
-		<%= f.password_field :password%>
+		<%= f.text_field :email, placeholder:'email' %>
+		<%= f.password_field :password, placeholder:'email'%>
 		<%= f.submit "Log In" %>
 		<% end %>
 	</div>
@@ -12,7 +12,7 @@
 
 		<%= bootstrap_form_for(@user) do |f| %>
 		<%= f.text_field :email, placeholder:'email' %>
-		<%= f.password_field :password %>
+		<%= f.password_field :password, placeholder: 'password' %>
 
 		<%= f.submit "Sign Up" %>
 		<% end %>

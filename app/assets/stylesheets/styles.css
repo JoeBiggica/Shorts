@@ -2,7 +2,7 @@
 
 span {
 	font-size: 3em;
-	color: indigo;
+	color: salmon;
 }
 #menu-bottom ul {
 	margin: 0;
@@ -19,6 +19,8 @@ span {
 
 /* signup page */
 #signup-page {
-	background-image: url('/test-cover.jpg');
+	background-image: url('/cover-abstract.jpg');
 	height: 1500px; /* gotta fix this  !!!!!!!!!!!!!! */
 }
+
+
