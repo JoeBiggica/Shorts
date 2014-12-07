@@ -36,6 +36,9 @@ class ShortsController < ApplicationController
 		render json: short
 	end
 
+	def share
+		@short = Short.find(params[:id])
+	end
 
 
 end
