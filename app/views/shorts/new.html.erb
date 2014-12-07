@@ -32,7 +32,7 @@
 			fd.append('type', 'image');
 			fd.append('name', generatedFileName);
 			fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
-
+			console.log(file.nativeFile)
 			$.ajax({
 				url: 'http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=' + signature,
 				type: 'POST',
@@ -48,7 +48,8 @@
 
 						success: function(response) {
 							
-							$('#uploaded-pictures').append('<img src="'+ response.image_url + '"  style="height: 200px;">');
+							$('#uploaded-pictures').append('<img id="'+response.id+'" src="'+ response.image_url + '"  style="height: 200px;">');
+							$('#uploaded-pictures').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');">Edit!</a>')
 							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">')
 						}
 					});
@@ -62,4 +63,38 @@
 	})
 	$('input.fd-file').addClass('btn btn-default');
 	$('.glyphicon-cloud-upload').addClass('clicked');
+
+
+	var featherEditor = new Aviary.Feather({
+        apiKey: '98c31e39a24b8caf',
+        apiVersion: 3,
+        tools: [,'text','stickers','draw','effects'],
+        onSave: function(imageID, newURL) {
+            var img = document.getElementById(imageID);
+            img.src = newURL;
+       		$.ajax({
+       			url: '/pictures/' + imageID, 
+       			type: 'PUT',
+       			data: {picture_id: imageID, url: newURL}
+       		})
+        },
+        postUrl: '/pictures'
+    });
+
+    function launchEditor(id, src) {
+        featherEditor.launch({
+            image: id,
+            url: src
+        });
+        return false;
+    }
+
+
 </script>
+
+		<!-- Add an edit button, passing the HTML id of the image
+		    and the public URL to the image -->
+
+
+		<!-- original line of HTML here: -->
+	
