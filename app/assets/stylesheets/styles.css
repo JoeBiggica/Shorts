@@ -39,13 +39,28 @@ body {
 }
 
 input {
-	border-radius: 5em !important;
+	border-radius: 0.2em !important;
 }
+
+input[name="name"] {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+input[type="file"] {
+	width: 100%;
+}
+
 
 button {
-	border-radius: 5em !important;
+	border-radius: 0.2em !important;
 }
 
+.submit-button {
+	margin-top: 20px;
+	width: 200px;
+	margin-left: 30%;
+}
 
 
 /* upload page ---- OLD*/ 
@@ -64,6 +79,14 @@ button {
 	height: 2em !important;
 	font-size: 3em !important;
 	text-align: center;
+}
+
+#uploaded-pictures {
+	margin-top: 20px;
+}
+
+.col-md-6 {
+	margin-bottom: 80px;
 }
 
 

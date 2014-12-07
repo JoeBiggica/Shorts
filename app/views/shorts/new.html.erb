@@ -3,13 +3,13 @@
 
 	<form id="upload-photo-form" action="/shorts" method="POST">
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		<input class="form-control" type="text" name="name" placeholder="Name your short!">
-		<div id="picture">
-			<button class="submit-button btn btn-default">Submit</button>
+		<input class="form-control" type="text" name="name" placeholder="name">
+		<div id="picture">Add a photo
 			<div id="uploaded-pictures">
-				
 			</div>
 		</div>
+		<button class="submit-button btn btn-default">Create</button>
+
 
 	</form>
 
@@ -48,7 +48,7 @@
 
 						success: function(response) {
 							
-							$('#uploaded-pictures').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><img id="'+response.id+'" src="'+ response.image_url + '"  style="height: 200px;"></a>');
+							$('#uploaded-pictures').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><img id="'+response.id+'" src="'+ response.image_url + '"  style="width: 25%;"></a>');
 							// $('#uploaded-pictures').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><button>Edit!</button></a>')
 							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">')
 						}
