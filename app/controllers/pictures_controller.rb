@@ -13,6 +13,8 @@ class PicturesController < ApplicationController
 		if params[:add]
 			hmac_signature = Short.photo_sig('GET', filename: params['original_filename'])
 			image_url = "http://cdn.astra.io/v0/public/diogeneshamilton/shorts/#{params['original_filename']}?hmac=#{hmac_signature}"
+			@short = Short.find(params[:short_id])
+			@short.touch
 			@picture = Picture.create({image_url: image_url,short_id:params[:short_id]})
 		else
 			hmac_signature = Short.photo_sig('GET', filename: params['original_filename'])

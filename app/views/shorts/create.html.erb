@@ -2,8 +2,6 @@
 	<div id="short-creation-message" class="row">
 		<div class="col-md-12">
 
-			<h1>Uploaded!</h1>
-			<h2>Now, share!</h2>
 			<br/>
 		
 			<h1><a href="shorts/<%= @short.permalink %>">shorts/<%= @short.permalink %></a></h1>
@@ -43,7 +41,7 @@
 		}
 		
 		$.post('send_short', {numbers: numbersArray, short_id: <%= @short.id %>}).done(function(){
-			$('#share-page').html("<h1 style='text-align:center;'>sent!</h1> <span class='glyphicon glyphicon-ok'></span>");
+			$('#share-page').html("<h1 style='text-align:center;'>invites sent</h1> <span class='glyphicon glyphicon-ok'></span>");
 		});
 
 	});
