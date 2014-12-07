@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+	require 'open-uri'
 
 	def index
 		
@@ -18,6 +19,25 @@ class PicturesController < ApplicationController
 			image_url = "http://cdn.astra.io/v0/public/diogeneshamilton/shorts/#{params['original_filename']}?hmac=#{hmac_signature}"
 			@picture = Picture.create({image_url: image_url})
 		end
+		render json: @picture 
+	end
+
+	def update
+		image_from_web  = open(params[:url])
+
+
+		image_name = params["picture_id"] + "_edited"
+		signature = Short.photo_sig('POST')
+
+		request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {file: image_from_web, type: 'image', name: 'image_name'})
+		
+
+		hmac_signature = Short.photo_sig('GET', filename: image_name)
+		image_url = "http://cdn.astra.io/v0/public/diogeneshamilton/shorts/#{image_name}?hmac=#{hmac_signature}"
+		binding.pry
+		@picture = Picture.find(params["picture_id"])
+		@picture.edited_image_url = image_url
+		@picture.save
 		render json: @picture 
 	end
 
