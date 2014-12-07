@@ -84,7 +84,10 @@ body {
 }
 
 
-
+/* main */
+.invisible-block {
+	height: 5em;
+}
 
 
 
