@@ -12,12 +12,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find( session[:id] )
-    @shorts = Short.where(user_id: session[:id])
+    @shorts = Short.where(user_id: session[:id]).order(updated_at: :desc)
   end
 
   def home
   	if logged_in?
-    @shorts = Short.where(user_id: session[:id])
+    	@shorts = Short.where(user_id: session[:id]).order(updated_at: :desc)
   else
   	redirect_to '/login'
   end
