@@ -1,0 +1,13 @@
+/* #menu-bottom */
+
+span {
+	font-size: 3em;
+	color: indigo;
+}
+
+#menu-bottom ul li {
+	display: inline;
+	margin: 0 1.1em 0 1.1em;
+}
+
+
