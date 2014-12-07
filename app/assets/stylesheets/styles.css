@@ -4,7 +4,12 @@ span {
 	font-size: 3em;
 	color: salmon;
 }
-#menu-bottom ul {
+
+#menu-bottom ul li a span:hover { /* makes buttons chagne color upon hover */
+	color: gold;
+}
+
+#menu-bottom ul { /* REPEATed in #upload-menu */
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
@@ -17,6 +22,8 @@ span {
 }
 
 
+
+
 /* signup page */
 #shorts-main {
 	background-image: url('/cover-abstract-50.jpg');
@@ -24,3 +31,42 @@ span {
 }
 
 
+
+/* upload page */
+#upload-reel img {
+	text-align: center;
+	height: 11em;
+}
+
+#upload-reel img:hover {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+/* check menu */
+#check-menu {
+	margin-bottom: 4.75em;
+
+}
+#check-menu ul {
+	list-style-type: none;
+	text-align: center;
+}
+#check-menu ul li {
+	display: inline;
+	padding-right: 4em;
+}
+
+#check-menu .glyphicon-remove {
+	color: firebrick;
+}
+#check-menu .glyphicon-remove:hover {
+	color: red;
+}
+
+#check-menu .glyphicon-ok {
+	color: green;
+}
+#check-menu .glyphicon-ok:hover {
+	color: springgreen;
+}
