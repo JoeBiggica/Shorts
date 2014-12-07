@@ -23,4 +23,9 @@ class ShortsController < ApplicationController
 		@signature = Short.photo_sig('POST')
 	end
 
+	def show
+
+	end
+	
+
 end

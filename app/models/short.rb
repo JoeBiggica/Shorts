@@ -15,19 +15,12 @@ class Short < ActiveRecord::Base
 		Base64.encode64("#{OpenSSL::HMAC.digest('sha1', secret, key)}").gsub('+', '-').gsub('/', '_').gsub('=', '').strip()
 	end
 
-	def send_message(phone_number)
-
-		account_sid = 'ACad9e9341b5926f0c3a1954df501f0018'
-		auth_token = 'b31d874d9f364a6c7a3d9b300b227cab'
-		@client = Twilio::REST::Client.new account_sid, auth_token
-
+	def create_collage()
 		pics = Picture.where(short_id:self.id)
 		images = []
 		pics.each do |image|
 			images.push(image.image_url)
 		end
-
-
 		length = images.length
 		if length <= 2
 			rows = 1
@@ -45,12 +38,21 @@ class Short < ActiveRecord::Base
 			end
 			r_images.push(image_list.append(false));
 		end
-		r_images.append(true).write('./public/collage.jpg')
+		url = "#{SecureRandom.uuid}.jpg"
+		r_images.append(true).write("./public/#{url}")
+		return url
+	end
+
+	def send_message(phone_number,url)
+
+		account_sid = 'ACad9e9341b5926f0c3a1954df501f0018'
+		auth_token = 'b31d874d9f364a6c7a3d9b300b227cab'
+		@client = Twilio::REST::Client.new account_sid, auth_token
 		@client.account.messages.create({
 			:from => '+15162104262', 
 			:to => phone_number, 
 			:body => 'Hey Check out My New Short!',
-			:media_url => 'http://148c934f.ngrok.com/collage.jpg'
+			:media_url => "http://148c934f.ngrok.com/#{url}"
 			})
 	end
 
