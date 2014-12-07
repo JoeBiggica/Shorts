@@ -1,14 +1,14 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 text-center">
-			<%= short.name %>
+			<%= @short.name %>
 		</div>
 
 	</div>
 
 	<div>
 		<div class="row">
-			<%= short.pictures.each do |pic| %>
+			<%= @short.pictures.each do |pic| %>
 				<div class="col-md-12 short-picture">
 					<img src="<%= pic.image_url %>">
 				</div>
