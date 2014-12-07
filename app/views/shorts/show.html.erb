@@ -12,9 +12,8 @@
 	</div>
 
 	<div class="album">
-		<a href="/short/share/<%=@short.id%>">
+	<a href="/short/share/<%=@short.id%>">
       <span class='glyphicon glyphicon-share'></span>
-    </a>
 		<ul class="short-picture-list"> 
 			<% @short.pictures.each do |pic| %>
 				<li class="col-md-3 short-picture text-center">
@@ -28,6 +27,8 @@
 			<% end %>
 		</ul>
 	</div>
+	    </a>
+
 
 <label class="clear-both display-block"> Add photos </label>
 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
@@ -89,4 +90,8 @@
   		})
 	})
 	$('input.fd-file').addClass('btn btn-default');
+	
+	$('.album').click(function(){
+    	window.location.replace("/short/share/<%=@short.id%>");
+    	});
 </script>
