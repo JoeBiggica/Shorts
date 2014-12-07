@@ -32,7 +32,7 @@
 			fd.append('type', 'image');
 			fd.append('name', generatedFileName);
 			fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
-
+			debugger
 			$.ajax({
 				url: 'http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=' + signature,
 				type: 'POST',
