@@ -38,6 +38,9 @@ class ShortsController < ApplicationController
 
 	end
 
+	def share
+		@short = Short.find(params[:id])
+	end
 
 
 end
