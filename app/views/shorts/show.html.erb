@@ -8,11 +8,13 @@
 
 	<div>
 		<div class="row">
-			<%= @short.pictures.each do |pic| %>
-				<div class="col-md-3 short-picture">
-					<img src="<%= pic.image_url %>">
-				</div>
-			<% end %>
+			<ul>
+				<% @short.pictures.each do |pic| %>
+					<li class="col-md-3 short-picture">
+						<img src="<%= pic.image_url %>">
+					</li>
+				<% end %>
+			</ul>
 		</div>
 	</div>
 </div>
