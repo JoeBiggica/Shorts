@@ -5,11 +5,11 @@ class ShortsController < ApplicationController
 	end
 
 	def create
-		binding.pry
+		
 	end
 
 	def new
-		@signature = Short.upload_photo_sig
+		@signature = Short.photo_sig('POST')
 	end
 
 end
