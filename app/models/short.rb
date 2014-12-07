@@ -1,4 +1,5 @@
 class Short < ActiveRecord::Base
+	include Magick
 	belongs_to :user
 	has_many :pictures
 
