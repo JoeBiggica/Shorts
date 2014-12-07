@@ -22,14 +22,20 @@ span {
 }
 
 
-
-
+/*general*/
 
 body {
 	background-image: url('/cover-abstract-50.jpg');
 	height: 100%; /* gotta fix this  !!!!!!!!!!!!!! */=
 }
 
+input {
+	border-radius: 5em !important;
+}
+
+button {
+	border-radius: 5em !important;
+}
 
 
 /* upload page ---- OLD*/ 
