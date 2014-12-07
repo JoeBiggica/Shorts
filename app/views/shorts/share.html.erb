@@ -41,7 +41,7 @@
       console.log($('.phone-numbers')[i].value)
     }
     
-    $.post('send_short', {numbers: numbersArray, short_id: <%= @short.id %>})
+    $.post('/send_short', {numbers: numbersArray, short_id: <%= @short.id %>})
 
   });
   
