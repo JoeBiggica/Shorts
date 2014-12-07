@@ -2,6 +2,7 @@
 
 	
 	<form action="/shorts" method="POST">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		<input type="text" name="name">
 		<input type="hidden" name="picture_ids[]">
 		<div id="picture">
@@ -9,6 +10,45 @@
 		</div>
 		<button>Submit</button>
 	</form>
-
-	
 </div>
+
+<script>
+	var zone = new FileDrop("picture");
+
+	zone.event('send', function (files) {
+  // FileList might contain multiple items.
+  		files.each(function (file) {
+    		
+    		var fd = new FormData();
+    		var userId = <%= session[:id] %>;
+    		var signature = "<%=  @signature %>";
+    		
+			fd.append('type', 'image');
+			fd.append('name', userId + '_' + $.now());
+			fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
+			debugger;
+			$.ajax({
+				url: 'http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=' + signature,
+				type: 'POST',
+				data: fd,
+				contentType: false,
+				processData: false,
+				xhr: function() {
+					var x = $.ajaxSettings.xhr();
+					if (x.upload) {
+						x.upload.addEventListener('progress', function(e) {
+							if (e.lengthComputable) {
+								var pct = Math.round(parseInt(e.loaded, 10) /
+									parseInt(e.total, 10) * 100);
+								console.log(pct + '%');
+							}
+						}, false);
+					}
+					return x;
+				},
+				success: function() { console.log('complete'); }
+			});
+
+  		})
+	})
+</script>
