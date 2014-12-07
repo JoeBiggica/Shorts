@@ -1,23 +1,27 @@
 <div class="container">
-	<div class="row">
+	<div id="short-creation-message" class="row">
 		<div class="col-md-12">
-			<h1>Short successfully uploaded</h1>
-		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<h2>Share your short!</h2>
+			<h1>Uploaded!</h1>
+			<h2>Now, share!</h2>
+			<br/>
+		
 			<h1><a href="shorts/<%= @short.permalink %>">shorts/<%= @short.permalink %></a></h1>
+			<br/>
+
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-12 friend-numbers">
-			<label id="invite">Invite</label><span class="glyphicon glyphicon-plus"></span><button type="submit" class="btn btn-default send-button">Send</button>
+
+			<button type="submit" class="btn btn-default add-button">Add #</button>
+
+ 			<button type="submit" class="btn btn-default send-button">Send</button>
+
 			<div class="numbers">
     			<input type="tel" class="form-control phone-numbers" name="picture_ids[]" placeholder="(888) 888-888"></br>
-    		</div>
+    	</div>
 		</div>
 		
 	</div>
@@ -27,7 +31,7 @@
 
 <script>
 
-	$('.glyphicon-plus').on('click', function(){
+	$('.add-button').on('click', function(){
 		$('.numbers').prepend('<input type="tel" class="form-control phone-numbers" name="picture_ids[]" placeholder="(888) 888-888"></br>')
 	});
 
