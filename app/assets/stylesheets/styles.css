@@ -31,6 +31,7 @@ span {
 body {
 	background-image: url('/cover-abstract-50.jpg');
 	height: 100%; /* gotta fix this  !!!!!!!!!!!!!! */
+	color: darkred !important;
 }
 
 input {
@@ -40,6 +41,7 @@ input {
 button {
 	border-radius: 5em !important;
 }
+
 
 
 /* upload page ---- OLD*/ 
