@@ -2,7 +2,7 @@
 
 span {
 	font-size: 3em;
-	color: salmon;
+	color: lightpink;
 }
 
 #menu-bottom ul li a span:hover { /* makes buttons chagne color upon hover */
@@ -23,6 +23,10 @@ span {
 
 
 /*general*/
+
+.clicked {
+	color: indianred;
+}
 
 body {
 	background-image: url('/cover-abstract-50.jpg');
@@ -116,6 +120,9 @@ button {
 	height: 8em;
 }
 
+.glyphicon-share {
+	color: indianred;
+}
 
 
 
@@ -145,6 +152,8 @@ button {
 #user-profile-image {
 	border-radius: 50%;
 }
+
+
 
 
 
