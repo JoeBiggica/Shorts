@@ -28,5 +28,12 @@ class ShortsController < ApplicationController
 		@short = Short.find_by(permalink: params["id"])
 	end
 
+	def send_short
+		
+
+		
+	end
+
+
 
 end
