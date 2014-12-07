@@ -12,6 +12,7 @@ root 'pictures#new'
 get '/login', to: 'users#index'
 post '/login', to: 'session#index'
 
+get '/upload_test', to: 'pictures#upload_test'
 
 end
 
