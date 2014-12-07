@@ -29,7 +29,7 @@ class PicturesController < ApplicationController
 		image_name = params["picture_id"] + "_edited"
 		signature = Short.photo_sig('POST')
 
-		request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {file: image_from_web, type: 'image', name: 'image_name'})
+		request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {type: 'image', name: 'image_name', file: image_from_web})
 		
 
 		hmac_signature = Short.photo_sig('GET', filename: image_name)
