@@ -40,7 +40,7 @@ class Short < ActiveRecord::Base
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
 				image.border(30, 30, "#000000")
-		
+			if length
 				image.resize_to_fill!(200)
 
 				image_list.push(image);
