@@ -47,7 +47,7 @@ class Short < ActiveRecord::Base
 			end
 			r_images.push(image_list.append(false));
 		end
-		url = "collages/#{SecureRandom.uuid}.jpg"
+		url = "collages/#{self.id}_collage.jpg"
 
 		r_images.append(true).write("./public/#{url}")
 
