@@ -16,8 +16,9 @@ class Short < ActiveRecord::Base
 	end
 
 	def create_collage()
-		pics = Picture.where(short_id:self.id)
+		pics = Picture.where(short_id:self.id).limit(8)
 		images = []
+
 		pics.each do |image|
 			images.push(image.image_url)
 		end
@@ -25,10 +26,17 @@ class Short < ActiveRecord::Base
 		if length <= 2
 			rows = 1
 			cols = length 
-		else
+		elsif length % 4 == 0 && length > 4
 			rows = length/2
+			cols = 4
+		elsif length % 3 == 0 
+			rows = length/3
+			cols = 3
+		else
+			rows = length / 2
 			cols = 2
 		end
+	
 		r_images = ImageList.new()
 		1.upto(rows) do
 			image_list = Magick::ImageList.new
@@ -40,7 +48,7 @@ class Short < ActiveRecord::Base
 			end
 			r_images.push(image_list.append(false));
 		end
-		url = "#{SecureRandom.uuid}.jpg"
+		url = "collages/#{SecureRandom.uuid}.jpg"
 
 		r_images.append(true).write("./public/#{url}")
 
