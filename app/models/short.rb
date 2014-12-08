@@ -26,9 +26,6 @@ class Short < ActiveRecord::Base
 		if length <= 2
 			rows = 1
 			cols = length 
-		elsif length % 4 == 0 && length > 4
-			rows = length/2
-			cols = 4
 		elsif length % 3 == 0 
 			rows = length/3
 			cols = 3
@@ -36,13 +33,15 @@ class Short < ActiveRecord::Base
 			rows = length / 2
 			cols = 2
 		end
-	
+
 		r_images = ImageList.new()
 		1.upto(rows) do
 			image_list = Magick::ImageList.new
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
-				image.resize_to_fit!(200)
+				image.border(30, 30, "#000000")
+		
+				image.resize_to_fill!(200)
 
 				image_list.push(image);
 			end
