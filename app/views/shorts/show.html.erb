@@ -56,9 +56,9 @@
   		files.each(function (file) {
     		
     		var fd = new FormData();
-    		var userId = <%= session[:id] %>;
+    		// var userId = <%= session[:id] %>;
     		var signature = "<%= @signature %>";
-    		var generatedFileName = userId + '_' + $.now();
+    		var generatedFileName = $.now();
 
 			fd.append('type', 'image');
 			fd.append('name', generatedFileName);
