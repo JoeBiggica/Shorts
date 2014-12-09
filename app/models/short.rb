@@ -19,7 +19,7 @@ class Short < ActiveRecord::Base
 	end
 
 	def create_collage()
-		pics = Picture.where(short_id:self.id).limit(9)
+		pics = Picture.where(short_id:self.id).limit(12)
 		images = []
 
 		pics.each do |image|
