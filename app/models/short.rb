@@ -29,6 +29,9 @@ class Short < ActiveRecord::Base
 		if length <= 2
 			rows = 1
 			cols = length 
+		elsif length == 10 || length == 11
+			rows = length/5
+			cols = 5
 		elsif length % 4 == 0 && length > 4 
 			rows = length/4
 			cols = 4
