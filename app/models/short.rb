@@ -41,8 +41,8 @@ class Short < ActiveRecord::Base
 			image_list = Magick::ImageList.new
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
-				image.border(30, 30, "#000000")
 				image.resize_to_fill!(200)
+				image.border!(3, 3, "#FFFFFF")
 
 				image_list.push(image);
 			end
@@ -51,6 +51,14 @@ class Short < ActiveRecord::Base
 		url = "collage/#{self.id}_collage.jpg"
 		FileUtils.mkdir_p('./public/collage') unless File.directory?('./public/collage')
 		r_images.append(true).write("./public/#{url}")
+		# s3 = AWS::S3.new(:access_key_id => '',:secret_access_key => '++x0ScdGlSIe')
+		# bucket = s3.buckets['shortsapp']
+		# my_blob = r_images.to_blob
+		# name = "#{self.id}_collage.jpg"
+		# type = 'image'
+		# obj = bucket.objects.create(name,my_blob,{content_type:type,acl:"public_read"})
+		# url =  obj.public_url().to_s
+		# # r_images.append(true).write("./public/#{url}")
 
 		self.collage = url
 		self.save
