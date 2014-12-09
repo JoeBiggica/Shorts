@@ -26,19 +26,24 @@ class PicturesController < ApplicationController
 	end
 
 	def update
-		res  = HTTParty.get(params[:url])
+		my_blob  = HTTParty.get(params[:url])
 
-		image_name = params["picture_id"] + "_edited.jpg"
+
+		name = params["picture_id"] + "_edited.jpg"
 		# signature = Short.photo_sig('POST')
 		# request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {file: image_from_web, type: 'image', name: 'image_name'})
 		# hmac_signature = Short.photo_sig('GET', filename: image_name)
 		# image_url = "http://cdn.astra.io/v0/public/diogeneshamilton/shorts/#{image_name}?hmac=#{hmac_signature}"
 
-		File.open("./public/#{image_name}", 'wb') {|f| f.write(res) }  
-
+		# File.open("./public/#{image_name}", 'wb') {|f| f.write(res) }  
+		s3 = AWS::S3.new(:access_key_id => ENV['S3_KEY'],:secret_access_key => ENV['S3_SECRET'])
+		bucket = s3.buckets['shortsapp']
+		type = 'image'
+		obj = bucket.objects.create(name,my_blob,{content_type:type,acl:"public_read"})
+		url =  obj.public_url().to_s
 
 		@picture = Picture.find(params["picture_id"])
-		@picture.edited_image_url = image_name
+		@picture.edited_image_url = url
 		@picture.save
 		render json: @picture 
 	end

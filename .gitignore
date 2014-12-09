@@ -16,4 +16,4 @@
 /tmp
 public/*
 public/collage
-
+config/initializers/s3_constants.rb

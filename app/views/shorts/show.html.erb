@@ -18,7 +18,7 @@
 			<% @short.pictures.each do |pic| %>
 				<li class="col-md-3 short-picture text-center">
 					<%if(pic.edited_image_url)%>
-					<a href="/<%= pic.edited_image_url %>"><img src="/<%= pic.edited_image_url %>"></a><br>
+					<a href="<%= pic.edited_image_url %>"><img src="<%= pic.edited_image_url %>"></a><br>
 					<a href="<%=pic.image_url%>">Original Image</a>
 					<%else%>
 					<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>"></a>

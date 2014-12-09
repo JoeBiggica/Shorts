@@ -2,6 +2,7 @@ class Short < ActiveRecord::Base
 	include Magick
 
 
+
 	belongs_to :user
 	has_many :pictures
 
@@ -18,7 +19,7 @@ class Short < ActiveRecord::Base
 	end
 
 	def create_collage()
-		pics = Picture.where(short_id:self.id).limit(8)
+		pics = Picture.where(short_id:self.id).limit(9)
 		images = []
 
 		pics.each do |image|
@@ -35,8 +36,13 @@ class Short < ActiveRecord::Base
 			rows = length / 2
 			cols = 2
 		end
-
+		# puts images 
+		# puts length
 		r_images = ImageList.new()
+
+
+		puts rows
+		puts cols
 		1.upto(rows) do
 			image_list = Magick::ImageList.new
 			1.upto(cols) do
@@ -48,17 +54,20 @@ class Short < ActiveRecord::Base
 			end
 			r_images.push(image_list.append(false));
 		end
-		url = "collage/#{self.id}_collage.jpg"
-		FileUtils.mkdir_p('./public/collage') unless File.directory?('./public/collage')
-		r_images.append(true).write("./public/#{url}")
-		# s3 = AWS::S3.new(:access_key_id => '',:secret_access_key => '++x0ScdGlSIe')
-		# bucket = s3.buckets['shortsapp']
-		# my_blob = r_images.to_blob
-		# name = "#{self.id}_collage.jpg"
-		# type = 'image'
-		# obj = bucket.objects.create(name,my_blob,{content_type:type,acl:"public_read"})
-		# url =  obj.public_url().to_s
-		# # r_images.append(true).write("./public/#{url}")
+		name = "#{self.id}_collage.jpg"
+		# FileUtils.mkdir_p('./public/collage') unless File.directory?('./public/collage')
+
+		# r_images.append(true).write("./public/#{name}")
+
+		s3 = AWS::S3.new(:access_key_id => ENV['S3_KEY'],:secret_access_key => ENV['S3_SECRET'])
+		bucket = s3.buckets['shortsapp']
+
+		my_blob = r_images.append(true).to_blob
+
+		type = 'image'
+		obj = bucket.objects.create(name,my_blob,{content_type:type,acl:"public_read"})
+		url =  obj.public_url().to_s
+
 
 		self.collage = url
 		self.save
