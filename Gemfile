@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'twilio-ruby'
 gem 'rmagick'
 gem 'httparty'
+gem 'paperclip'
+gem 'aws-sdk'
 gem 'rails_12factor', group: :production
 
 # Use unicorn as the app server
