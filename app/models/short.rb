@@ -1,5 +1,7 @@
 class Short < ActiveRecord::Base
 	include Magick
+
+
 	belongs_to :user
 	has_many :pictures
 
@@ -40,15 +42,14 @@ class Short < ActiveRecord::Base
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
 				image.border(30, 30, "#000000")
-			if length
 				image.resize_to_fill!(200)
 
 				image_list.push(image);
 			end
 			r_images.push(image_list.append(false));
 		end
-		url = "collages/#{self.id}_collage.jpg"
-
+		url = "collage/#{self.id}_collage.jpg"
+		FileUtils.mkdir_p('./public/collage') unless File.directory?('./public/collage')
 		r_images.append(true).write("./public/#{url}")
 
 		self.collage = url

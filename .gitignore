@@ -15,4 +15,5 @@
 /log/*.log
 /tmp
 public/*
+public/collage
 

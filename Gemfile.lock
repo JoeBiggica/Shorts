@@ -29,9 +29,18 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
+    aws-sdk (1.59.1)
+      aws-sdk-v1 (= 1.59.1)
+    aws-sdk-v1 (1.59.1)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
     bootstrap_form (2.2.0)
     builder (3.2.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -60,9 +69,17 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.1)
     minitest (5.4.3)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    nokogiri (1.6.5)
+      mini_portile (~> 0.6.0)
+    paperclip (4.2.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.5)
     pry (0.10.1)
@@ -141,12 +158,14 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  aws-sdk
   bcrypt (~> 3.1.7)
   bootstrap_form
   coffee-rails (~> 4.0.0)
   httparty
   jbuilder (~> 2.0)
   jquery-rails
+  paperclip
   pg
   pry-rails
   rails (= 4.1.4)
