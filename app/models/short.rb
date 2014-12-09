@@ -54,7 +54,7 @@ class Short < ActiveRecord::Base
 			end
 			r_images.push(image_list.append(false));
 		end
-		name = "#{self.id}_collage.jpg"
+		name = "#{SecureRandom.uuid}_collage.jpg"
 		# FileUtils.mkdir_p('./public/collage') unless File.directory?('./public/collage')
 
 		# r_images.append(true).write("./public/#{name}")
