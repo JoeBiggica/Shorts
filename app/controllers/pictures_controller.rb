@@ -29,7 +29,7 @@ class PicturesController < ApplicationController
 		my_blob  = HTTParty.get(params[:url])
 
 
-		name = params["picture_id"] + "_edited.jpg"
+		name = SecureRandom.uuids + "_edited.jpg"
 		# signature = Short.photo_sig('POST')
 		# request = HTTParty.post("http://api.astra.io/v0/public/diogeneshamilton/shorts?hmac=#{signature}", :body => {file: image_from_web, type: 'image', name: 'image_name'})
 		# hmac_signature = Short.photo_sig('GET', filename: image_name)
