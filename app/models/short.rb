@@ -23,7 +23,11 @@ class Short < ActiveRecord::Base
 		images = []
 
 		pics.each do |image|
-			images.push(image.image_url)
+			if image.edited_image_url
+				images.push(image.edited_image_url)
+			else
+				images.push(image.image_url)
+			end
 		end
 		length = images.length
 		if length <= 2
@@ -53,7 +57,9 @@ class Short < ActiveRecord::Base
 			image_list = Magick::ImageList.new
 			1.upto(cols) do
 				image = Magick::Image.read(images.shift()).first
-				image.resize_to_fill!(200)
+				if length > 1
+					image.resize_to_fill!(200)
+				end
 				image.border!(3, 3, "#FFFFFF")
 
 				image_list.push(image);
