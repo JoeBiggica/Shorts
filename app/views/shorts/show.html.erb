@@ -16,7 +16,7 @@
 		<span class='glyphicon glyphicon-share'></span>
 		<ul class="short-picture-list"> 
 			<% @short.pictures.each do |pic| %>
-			<li class="col-md-3 short-picture text-center">
+			<li class="square-pic-list col-md-3 short-picture text-center">
 				<%if(pic.edited_image_url)%>
 					<div class="square-pic">
 						<a href="<%= pic.edited_image_url %>"><img src="<%= pic.edited_image_url %>"></a><br>	
@@ -84,7 +84,7 @@ zone.event('send', function (files) {
 						success: function(response) {
 							
 							
-							$('.short-picture-list').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><li class="col-md-3 short-picture"><div class="square-pic"><img id="'+response.id+'" src="'+ response.image_url + '"></div></li></a>');
+							$('.short-picture-list').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><li class="square-pic-list col-md-3 short-picture"><div class="square-pic"><img id="'+response.id+'" src="'+ response.image_url + '"></div></li></a>');
 							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">');
 						}
 					});
