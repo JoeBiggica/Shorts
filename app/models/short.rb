@@ -95,7 +95,7 @@ class Short < ActiveRecord::Base
 			:from => '+15162104262', 
 			:to => phone_number, 
 			:body => "Hey Check out My New Short at http://shortshack.herokuapp.com/shorts/#{self.permalink}!",
-			:media_url => "http://shortshack.herokuapp.com/#{self.collage}"
+			:media_url => self.collage
 			})
 	end
 
