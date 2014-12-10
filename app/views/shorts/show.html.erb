@@ -96,4 +96,30 @@
 	$('.album').click(function(){
     	window.location.replace("/short/share/<%=@short.id%>");
     	});
+
+
+	var featherEditor = new Aviary.Feather({
+	apiKey: '98c31e39a24b8caf',
+	apiVersion: 3,
+	tools: [,'text','stickers','draw','effects','crop'],
+	onSave: function(imageID, newURL) {
+		var img = document.getElementById(imageID);
+		img.src = newURL;
+		$.ajax({
+			url: '/pictures/' + imageID, 
+			type: 'PUT',
+			data: {picture_id: imageID, url: newURL}
+		})
+	},
+	postUrl: '/pictures'
+});
+
+function launchEditor(id, src) {
+	featherEditor.launch({
+		image: id,
+		url: src
+	});
+	return false;
+} 
+
 </script>
