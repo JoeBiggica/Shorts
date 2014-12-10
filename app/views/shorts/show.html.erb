@@ -4,64 +4,79 @@
 			<h1><%= @short.name %></h1>
 		</div>
 
-		</div>
-		<div class="col-md-1">
-			
-		</div>
+	</div>
+	<div class="col-md-1">
 
 	</div>
 
-	<div class="album">
+</div>
+
+<div class="album">
 	<a href="/short/share/<%=@short.id%>">
-      <span class='glyphicon glyphicon-share'></span>
-		<ul class="short-picture-list"> 
-			<% @short.pictures.each do |pic| %>
-				<li class="col-md-3 short-picture text-center">
-					<%if(pic.edited_image_url)%>
-					<a href="<%= pic.edited_image_url %>"><img src="<%= pic.edited_image_url %>"></a><br>
-					<a href="<%=pic.image_url%>">Original Image</a>
-					<%else%>
-					<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>"></a>
-					<%end%>
-				</li>
-			<% end %>
-		</ul>
-	</div>
-	    </a>
+		<span class='glyphicon glyphicon-share'></span>
+	</a>
+	<ul class="short-picture-list"> 
+		<% @short.pictures.each do |pic| %>
+		<li class="col-md-3 short-picture text-center">
 
 
-		<label class="clear-both display-block"> Add photos </label>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		<div id="add-picture">
-		</div>
 
-		<%if @short.user_id == session[:id] %>
-			<div class="delete-button"> 			
-				<form action="/shorts/<%=@short.id%>" method="POST">
-					<input type="hidden" name="user_id" value="<%=session[:id]%>">
-					<input type="hidden" name="_method" value="DELETE">
-					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-					<button class="btn btn-default" onclick="return confirm('Are you sure you want to delet this Short?');">Delete</button>
-				</form>
+
+
+
+
+			<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>" id="<%=pic.id%>"></a>
+			<% if pic.edited_image_url || pic.image_versions.length > 0%>
+			<div class="version">
+				<label class="<%=pic.id%>" id="original"><h5>0</h5></label><label class="<%=pic.id%>" id="edit"><h5>1</h5></label>
+				<%pic.image_versions.each_with_index do |version,index|%>
+				<label class="<%=pic.id%>" id="<%=index%>"><h5><%=index+2%></h5></label>
+				<%end%>
 			</div>
-		<%end%>
 
-	</div>
+			<%end%>
+
+
+
+		</li>
+		<% end %>
+	</ul>
+</div>
+</a>
+
+
+<label class="clear-both display-block"> Add photos </label>
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+<div id="add-picture">
+</div>
+
+<%if @short.user_id == session[:id] %>
+<div class="delete-button"> 			
+	<form action="/shorts/<%=@short.id%>" method="POST">
+		<input type="hidden" name="user_id" value="<%=session[:id]%>">
+		<input type="hidden" name="_method" value="DELETE">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		<button class="btn btn-default" onclick="return confirm('Are you sure you want to delet this Short?');">Delete</button>
+	</form>
+</div>
+<%end%>
+
+</div>
 
 <script>
-	var zone = new FileDrop("add-picture");
+var zone = new FileDrop("add-picture");
 
-	zone.event('send', function (files) {
+zone.event('send', function (files) {
   // FileList might contain multiple items.
-  		files.each(function (file) {
-    		
-    		var fd = new FormData();
+  files.each(function (file) {
+
+  	var fd = new FormData();
     		// var userId = <%= session[:id] %>;
     		var signature = "<%= @signature %>";
     		var generatedFileName = $.now();
 
-			fd.append('type', 'image');
-			fd.append('name', generatedFileName);
+    		fd.append('type', 'image');
+    		fd.append('name', generatedFileName);
 			fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
 
 			$.ajax({
@@ -89,11 +104,41 @@
 			});
 
 
-  		})
+		})
+})
+$('input.fd-file').addClass('btn btn-default');
+
+// $('.album').click(function(){
+// 	window.location.replace("/short/share/<%=@short.id%>");
+// });
+
+$('.version').on('click',function(e){
+	var pictureID = $(e.target).parent()[0].className
+	var version =  $(e.target).text()
+	// console.log(version)
+	// console.log($(e.target).parent()[0].className)
+	$.get('/pictures/'+pictureID).done(function(response){
+		console.log(response)
+		console.log(version)
+		if(version == "0"){
+			var img = document.getElementById(pictureID);
+			img.src = response.image_url
+		}
+		else if(version == "1"){
+			var img = document.getElementById(pictureID);
+			img.src = response.edited_image_url
+
+		}
+		else{
+			var img = document.getElementById(pictureID);
+			console.log(img)
+			img.src = response.image_versions[parseInt(version)-2].image_url;
+		}
 	})
-	$('input.fd-file').addClass('btn btn-default');
-	
-	$('.album').click(function(){
-    	window.location.replace("/short/share/<%=@short.id%>");
-    	});
+
+
+
+
+})
+
 </script>

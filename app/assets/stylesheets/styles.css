@@ -142,6 +142,18 @@ button {
 	margin-top: 10px;
 	
 }
+.version label
+{
+	display:inline;
+	cursor:pointer;
+	margin-left:10px;
+}
+.version h5
+{
+	display:inline;
+	cursor:pointer;
+		margin-left:10px;
+}
 
 .album:hover {
 	cursor: pointer; 

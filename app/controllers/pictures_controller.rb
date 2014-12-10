@@ -24,6 +24,10 @@ class PicturesController < ApplicationController
 		end
 		render json: @picture 
 	end
+	def show
+		@picture = Picture.find(params[:id])
+		render json: @picture, :include => :image_versions
+	end
 
 	def update
 		my_blob  = HTTParty.get(params[:url])
