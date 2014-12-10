@@ -26,7 +26,6 @@ class PicturesController < ApplicationController
 	end
 
 	def update
-		binding.pry
 		my_blob  = HTTParty.get(params[:url])
 
 

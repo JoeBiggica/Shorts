@@ -18,10 +18,14 @@
 			<% @short.pictures.each do |pic| %>
 			<li class="col-md-3 short-picture text-center">
 				<%if(pic.edited_image_url)%>
-				<a href="<%= pic.edited_image_url %>"><img src="<%= pic.edited_image_url %>"></a><br>
-				<a href="<%=pic.image_url%>">Original Image</a>
+					<div class="square-pic">
+						<a href="<%= pic.edited_image_url %>"><img src="<%= pic.edited_image_url %>"></a><br>	
+					</div>
+					<a href="<%=pic.image_url%>">Original Image</a>
 				<%else%>
-				<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>"></a>
+					<div class="square-pic">
+						<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>"></a>	
+					</div>	
 				<%end%>
 			</li>
 			<% end %>
@@ -80,8 +84,8 @@ zone.event('send', function (files) {
 						success: function(response) {
 							
 							
-							$('.short-picture-list').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><li class="col-md-3 short-picture"><img id="'+response.id+'" src="'+ response.image_url + '"></li></a>');
-							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">')
+							$('.short-picture-list').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><li class="col-md-3 short-picture"><div class="square-pic"><img id="'+response.id+'" src="'+ response.image_url + '"></div></li></a>');
+							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">');
 						}
 					});
 

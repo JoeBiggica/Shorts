@@ -61,6 +61,14 @@ input[type="file"] {
 }
 
 
+/* show pictures li */
+.square-pic {
+	height: 300px;
+	width: 300px;
+	overflow: hidden;
+}
+
+
 button {
 	border-radius: 0.2em !important;
 }
