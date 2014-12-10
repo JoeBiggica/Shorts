@@ -4,64 +4,64 @@
 			<h1><%= @short.name %></h1>
 		</div>
 
-		</div>
-		<div class="col-md-1">
-			
-		</div>
-
+	</div>
+	<div class="col-md-1">
+		
 	</div>
 
-	<div class="album">
+</div>
+
+<div class="album">
 	<a href="/short/share/<%=@short.id%>">
-      <span class='glyphicon glyphicon-share'></span>
+		<span class='glyphicon glyphicon-share'></span>
 		<ul class="short-picture-list"> 
 			<% @short.pictures.each do |pic| %>
-				<li class="col-md-3 short-picture text-center">
-					<%if(pic.edited_image_url)%>
-					<a href="<%= pic.edited_image_url %>"><img src="<%= pic.edited_image_url %>"></a><br>
-					<a href="<%=pic.image_url%>">Original Image</a>
-					<%else%>
-					<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>"></a>
-					<%end%>
-				</li>
+			<li class="col-md-3 short-picture text-center">
+				<%if(pic.edited_image_url)%>
+				<a href="<%= pic.edited_image_url %>"><img src="<%= pic.edited_image_url %>"></a><br>
+				<a href="<%=pic.image_url%>">Original Image</a>
+				<%else%>
+				<a href="<%= pic.image_url %>"><img src="<%= pic.image_url %>"></a>
+				<%end%>
+			</li>
 			<% end %>
 		</ul>
 	</div>
-	    </a>
+</a>
 
 
-		<label class="clear-both display-block"> Add photos </label>
+<label class="clear-both display-block"> Add photos </label>
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+<div id="add-picture">
+</div>
+
+<%if @short.user_id == session[:id] %>
+<div class="delete-button"> 			
+	<form action="/shorts/<%=@short.id%>" method="POST">
+		<input type="hidden" name="user_id" value="<%=session[:id]%>">
+		<input type="hidden" name="_method" value="DELETE">
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		<div id="add-picture">
-		</div>
+		<button class="btn btn-default" onclick="return confirm('Are you sure you want to delet this Short?');">Delete</button>
+	</form>
+</div>
+<%end%>
 
-		<%if @short.user_id == session[:id] %>
-			<div class="delete-button"> 			
-				<form action="/shorts/<%=@short.id%>" method="POST">
-					<input type="hidden" name="user_id" value="<%=session[:id]%>">
-					<input type="hidden" name="_method" value="DELETE">
-					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-					<button class="btn btn-default" onclick="return confirm('Are you sure you want to delet this Short?');">Delete</button>
-				</form>
-			</div>
-		<%end%>
-
-	</div>
+</div>
 
 <script>
-	var zone = new FileDrop("add-picture");
+var zone = new FileDrop("add-picture");
 
-	zone.event('send', function (files) {
+zone.event('send', function (files) {
   // FileList might contain multiple items.
-  		files.each(function (file) {
-    		
-    		var fd = new FormData();
+  files.each(function (file) {
+  	
+  	var fd = new FormData();
     		// var userId = <%= session[:id] %>;
     		var signature = "<%= @signature %>";
     		var generatedFileName = $.now();
 
-			fd.append('type', 'image');
-			fd.append('name', generatedFileName);
+    		fd.append('type', 'image');
+    		fd.append('name', generatedFileName);
 			fd.append('file', file.nativeFile); // <= here's where that HTML5 file handle goes
 
 			$.ajax({
@@ -79,7 +79,8 @@
 
 						success: function(response) {
 							
-							$('.short-picture-list').append('<a href="'+response.image_url+'"><li class="col-md-3 short-picture"><img src="'+ response.image_url + '"></li></a>');
+							
+							$('.short-picture-list').append('<a href="#" onclick="return launchEditor(\''+response.id+'\', \''+response.image_url+'\');"><li class="col-md-3 short-picture"><img id="'+response.id+'" src="'+ response.image_url + '"></li></a>');
 							$('#upload-photo-form').append('<input type="hidden" name="picture_ids[]" value="'+ response.id + '">')
 						}
 					});
@@ -89,16 +90,16 @@
 			});
 
 
-  		})
-	})
-	$('input.fd-file').addClass('btn btn-default');
-	
-	$('.album').click(function(){
-    	window.location.replace("/short/share/<%=@short.id%>");
-    	});
+		})
+})
+$('input.fd-file').addClass('btn btn-default');
+
+// $('.album').click(function(){
+// 	window.location.replace("/short/share/<%=@short.id%>");
+// });
 
 
-	var featherEditor = new Aviary.Feather({
+var featherEditor = new Aviary.Feather({
 	apiKey: '98c31e39a24b8caf',
 	apiVersion: 3,
 	tools: [,'text','stickers','draw','effects','crop'],
