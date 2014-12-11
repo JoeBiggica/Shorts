@@ -1,8 +1,6 @@
 class Short < ActiveRecord::Base
 	include Magick
 
-
-
 	belongs_to :user
 	has_many :pictures
 
@@ -46,8 +44,7 @@ class Short < ActiveRecord::Base
 			rows = length / 2
 			cols = 2
 		end
-		# puts images 
-		# puts length
+
 		r_images = ImageList.new()
 
 
@@ -67,16 +64,12 @@ class Short < ActiveRecord::Base
 			r_images.push(image_list.append(false));
 		end
 		name = "#{SecureRandom.uuid}_collage.jpg"
-		# FileUtils.mkdir_p('./public/collage') unless File.directory?('./public/collage')
-
-		# r_images.append(true).write("./public/#{name}")
-
 		s3 = AWS::S3.new(:access_key_id => ENV['S3_KEY'],:secret_access_key => ENV['S3_SECRET'])
 		bucket = s3.buckets['shortsapp']
 
 		my_blob = r_images.append(true).to_blob
 
-		type = 'image'
+		type = "image/jpeg"
 		obj = bucket.objects.create(name,my_blob,{content_type:type,acl:"public_read"})
 		url =  obj.public_url().to_s
 
